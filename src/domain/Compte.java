@@ -1,23 +1,23 @@
 package domain;
-import exception.InvalidCodeException;
-import exception.SoldeInsuffisantException;
 
+import java.util.UUID;
 
 public abstract class Compte {
 
-    private long code;
+    private String code;
     private static int nbComptes;
     protected double solde;
 
     public void Compte() {
-
+        nbComptes++;
+        String code = UUID.randomUUID().toString();
     }
 
-    public long getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -38,7 +38,6 @@ public abstract class Compte {
     }
 
     private void retirer(double montant) {
-
         this.solde -= montant;
     }
 
