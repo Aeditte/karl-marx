@@ -1,6 +1,7 @@
-import java.util.UUID;
-import exception.InvalidCodeException;
 package domain;
+import exception.InvalidCodeException;
+import exception.SoldeInsuffisantException;
+
 
 public abstract class Compte {
 
@@ -37,9 +38,6 @@ public abstract class Compte {
     }
 
     private void retirer(double montant) {
-        if (montant > this.solde) {
-            throw new InvalidCodeException();
-        }
 
         this.solde -= montant;
     }
