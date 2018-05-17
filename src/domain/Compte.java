@@ -1,5 +1,8 @@
 package domain;
 
+import exception.SoldeInsuffisantException;
+import exception.VirementInsufisantException;
+
 import java.util.UUID;
 
 public abstract class Compte {
@@ -29,16 +32,14 @@ public abstract class Compte {
         this.solde = solde;
     }
 
-    private void geneId() {
-
+    public void verser(double montant) throws VirementInsufisantException {
+        if (montant <= 0 ) throw new VirementInsufisantException( this );
+        solde += montant;
     }
 
-    private void verser(double montant) {
-        this.solde += montant;
-    }
-
-    private void retirer(double montant) {
-        this.solde -= montant;
+    public void retirer(double montant) throws SoldeInsuffisantException {
+        if (montant > solde ) throw new SoldeInsuffisantException( this );
+        solde -= montant;
     }
 
     @Override
